@@ -18,21 +18,14 @@ namespace ASP5_Template_Web.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public Task Invoke(HttpContext context)
         {
-            if (!context.Request.IsHttps)
-            {
-                var url = context.Request.GetDisplayUrl();
-                //var redirectUrl = url.Replace("http", "https");
-                var redirectUrl = "https://localhost:44301";
-                context.Response.Redirect(redirectUrl);
-                var task = Task.FromResult("Sorry not Secure...");
-                await task;
-            }
-            else
-            {
-                await _next.Invoke(context);
-            }
+            if (context.Request.IsHttps)
+                return _next.Invoke(context);
+            var url = context.Request.GetDisplayUrl();
+            var redirectUrl = url.Replace("http", "https");
+            context.Response.Redirect(redirectUrl);
+            return Task.FromResult(0);
         }
     }
 }

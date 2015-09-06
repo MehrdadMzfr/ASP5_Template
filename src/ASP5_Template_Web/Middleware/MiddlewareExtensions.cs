@@ -8,10 +8,9 @@ namespace ASP5_Template_Web.Middleware
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseForceSSL(this IApplicationBuilder app, Action<IApplicationBuilder> configuration)
+        public static IApplicationBuilder UseForceSSL(this IApplicationBuilder app)
         {
             var laterApp = app.UseMiddleware<ForceSsl>();
-            configuration(laterApp);
             return laterApp;
         }
     }

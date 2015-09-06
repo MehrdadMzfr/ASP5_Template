@@ -30,16 +30,16 @@ namespace ASP5_Template_Web
 
         public void Configure(IApplicationBuilder app)
         {
+//#if !DEBUG
+            app.UseForceSSL();
+//#endif
             app.UseDefaultFiles();
-#if !DEBUG
-            app.UseForceSSL(innerApp => innerApp.UseStaticFiles());
-#endif
             app.UseMvc(builder =>
             {
                 //builder.MapRoute(name: "defaultRouter", template: "{controller=Home}/{action=Index}");
                 builder.MapRoute(name: "defaultApi", template: "api/{controller}/{action}");
             });
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
         }
     }
 }
