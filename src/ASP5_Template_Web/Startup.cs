@@ -1,6 +1,8 @@
-﻿using ASP5_Template_Web.Models;
+﻿using ASP5_Template_Web.Middleware;
+using ASP5_Template_Web.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Mvc;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
@@ -20,12 +22,7 @@ namespace ASP5_Template_Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-#if !DEBUG
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
-#endif
+            //services.Configure<MvcOptions>(options => options.Filters.Add(new RequireHttpsAttribute()));
             var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
             services.AddInstance<IDataLayer>(new DataLayer(connectionString));
             services.AddTransient<IBusinessService, BusinessService>();
@@ -34,12 +31,15 @@ namespace ASP5_Template_Web
         public void Configure(IApplicationBuilder app)
         {
             app.UseDefaultFiles();
+#if !DEBUG
+            app.UseForceSSL(innerApp => innerApp.UseStaticFiles());
+#endif
             app.UseMvc(builder =>
             {
                 //builder.MapRoute(name: "defaultRouter", template: "{controller=Home}/{action=Index}");
                 builder.MapRoute(name: "defaultApi", template: "api/{controller}/{action}");
             });
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
         }
     }
 }
