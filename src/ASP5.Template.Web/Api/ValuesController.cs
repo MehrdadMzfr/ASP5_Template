@@ -1,7 +1,7 @@
-﻿using ASP5_Template_Web.Models;
+﻿using ASP5.Template.Web.Models;
 using Microsoft.AspNet.Mvc;
 
-namespace ASP5_Template_Web.Api
+namespace ASP5.Template.Web.Api
 {
     public class ValuesController : Controller
     {

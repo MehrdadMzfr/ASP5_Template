@@ -1,5 +1,5 @@
-﻿using ASP5_Template_Web.Middleware;
-using ASP5_Template_Web.Models;
+﻿using ASP5.Template.Web.Middleware;
+using ASP5.Template.Web.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
@@ -8,7 +8,7 @@ using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 
 
-namespace ASP5_Template_Web
+namespace ASP5.Template.Web
 {
     public class Startup
     {

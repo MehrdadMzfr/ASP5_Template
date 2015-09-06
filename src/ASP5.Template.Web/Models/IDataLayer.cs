@@ -1,4 +1,4 @@
-﻿namespace ASP5_Template_Web.Models
+﻿namespace ASP5.Template.Web.Models
 {
     public interface IDataLayer
     {

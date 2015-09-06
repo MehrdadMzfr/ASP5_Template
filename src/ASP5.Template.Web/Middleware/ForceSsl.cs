@@ -7,7 +7,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Http.Extensions;
 using Microsoft.AspNet.Mvc;
 
-namespace ASP5_Template_Web.Middleware
+namespace ASP5.Template.Web.Middleware
 {
     public class ForceSsl
     {

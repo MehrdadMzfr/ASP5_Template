@@ -7,10 +7,10 @@
 #My Additions
 
 .vs/config/applicationhost.config
-src/ASP5_Template_Web/wwwroot/lib
-src/ASP5_Template_Web/wwwroot/**/*.map
-src/ASP5_Template_Web/wwwroot/**/*.js
-src/ASP5_Template_Web/Properties
+src/ASP5.Template.Web/wwwroot/lib
+src/ASP5.Template.Web/wwwroot/**/*.map
+src/ASP5.Template.Web/wwwroot/**/*.js
+src/ASP5.Template.Web/Properties
 
 # User-specific files
 *.suo
