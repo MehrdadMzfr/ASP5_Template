@@ -7,6 +7,7 @@ using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 
+
 namespace ASP5_Template_Web
 {
     public class Startup
@@ -30,9 +31,9 @@ namespace ASP5_Template_Web
 
         public void Configure(IApplicationBuilder app)
         {
-//#if !DEBUG
+#if !DEBUG
             app.UseForceSSL();
-//#endif
+#endif
             app.UseDefaultFiles();
             app.UseMvc(builder =>
             {

@@ -22,7 +22,7 @@ namespace ASP5_Template_Web.Middleware
         {
             if (context.Request.IsHttps)
                 return _next.Invoke(context);
-            var url = context.Request.GetDisplayUrl();
+            var url = context.Request.GetEncodedUrl();
             var redirectUrl = url.Replace("http", "https");
             context.Response.Redirect(redirectUrl);
             return Task.FromResult(0);
