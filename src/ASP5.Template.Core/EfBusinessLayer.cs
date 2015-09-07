@@ -12,16 +12,15 @@ namespace ASP5.Template.Core
         {
             AddDefaultData();
         }
-
         private void AddDefaultData()
         {
             using (var context = new Context())
             {
-                context.Manufacturers.Add(new Manufacturer
-                {
-                    Name = "Ford"
-                });
-                context.SaveChanges();
+                var manufacturer = new Manufacturer { Id = 1, Name = "Ford" };
+                var data = context.Manufacturers.Add(manufacturer);
+                context.Manufacturers.AddOrUpdate(manufacturer);
+                var listLength = GetData().Count;
+                //context.SaveChanges();
             }
         }
 

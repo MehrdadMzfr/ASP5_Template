@@ -8,6 +8,8 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
+using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.ConfigurationModel.Json;
 using Microsoft.Framework.DependencyInjection;
 
 
@@ -29,8 +31,8 @@ namespace ASP5.Template.Web
             var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
             services.AddInstance<IDataLayer>(new DataLayer(connectionString));
             services.AddTransient<IBusinessService, BusinessService>();
-            services.AddInstance<Context>(new Context());
-            services.AddInstance<ContextConfiguration>(new ContextConfiguration {ConnectionString = connectionString});
+            services.AddTransient<EfBusinessLayer>();
+            Context.ConnectionString = connectionString;
         }
 
         public void Configure(IApplicationBuilder app)

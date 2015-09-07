@@ -8,19 +8,18 @@ namespace ASP5.Template.Web.Api
     public class ValuesController : Controller
     {
         private readonly IBusinessService _businessLayer;
-        private readonly EfBusinessLayer _testLayer = new EfBusinessLayer();
-        [FromServices]
-        public ContextConfiguration Config { get; set; }
+        private readonly EfBusinessLayer _efBusinessLayer;
 
-        public ValuesController(IBusinessService businessLayer)
+        public ValuesController(IBusinessService businessLayer, EfBusinessLayer efBusinessLayer)
         {
             _businessLayer = businessLayer;
+            _efBusinessLayer = efBusinessLayer;
         }
 
         [HttpGet]
         public ActionResult GetManufacturers()
         {
-            var manufacturers = _testLayer.GetData();
+            var manufacturers = _efBusinessLayer.GetData();
             return Ok(manufacturers);
         }
     }
