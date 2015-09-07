@@ -1,0 +1,9 @@
+﻿Install-Package EntityFramework.SqlServer –Pre
+	"EntityFramework.SqlServer": "7.0.0-beta7"
+Install-Package EntityFramework.Commands –Pre
+	"ef": "EntityFramework.Commands"
+
+dnvm use 1.0.0-beta7
+cd F:\Git_Base\ASP5_Template\src\ASP5.Template.Core
+dnx ef migrations add Initial
+dnx ef database update

@@ -7,7 +7,7 @@
 
     public getData(): ng.IPromise<any>
     {
-        return this.$http.get("/api/values/getdata");
+        return this.$http.get("/api/values/GetManufacturers");
     }
 }
 

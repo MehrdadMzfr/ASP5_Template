@@ -1,8 +1,11 @@
-﻿using ASP5.Template.Web.Middleware;
+﻿using ASP5.Template.Core;
+using ASP5.Template.Core.Models;
+using ASP5.Template.Web.Middleware;
 using ASP5.Template.Web.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
@@ -23,10 +26,11 @@ namespace ASP5.Template.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //services.Configure<MvcOptions>(options => options.Filters.Add(new RequireHttpsAttribute()));
             var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
             services.AddInstance<IDataLayer>(new DataLayer(connectionString));
             services.AddTransient<IBusinessService, BusinessService>();
+            services.AddInstance<Context>(new Context());
+            services.AddInstance<ContextConfiguration>(new ContextConfiguration {ConnectionString = connectionString});
         }
 
         public void Configure(IApplicationBuilder app)
