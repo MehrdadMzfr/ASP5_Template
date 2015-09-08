@@ -1,11 +1,5 @@
-﻿using System;
-using System.Linq;
-using ASP5.Template.Core.Entities;
-using ASP5.Template.Core.Models;
-using Microsoft.AspNet.Mvc;
+﻿using ASP5.Template.Core.Entities;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Internal;
-using Microsoft.Framework.Configuration;
 
 namespace ASP5.Template.Core
 {

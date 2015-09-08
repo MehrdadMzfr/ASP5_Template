@@ -1,9 +1,6 @@
-using System;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using ASP5.Template.Core;
 using Microsoft.Data.Entity.SqlServer.Metadata;
 
 namespace ASP5.Template.Core.Migrations

@@ -1,15 +1,10 @@
 ﻿using ASP5.Template.Core;
-using ASP5.Template.Core.Models;
-using ASP5.Template.Web.Middleware;
 using ASP5.Template.Web.Models;
+using ASP5.Template.Web.Middleware;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
-using Microsoft.Framework.ConfigurationModel;
-using Microsoft.Framework.ConfigurationModel.Json;
 using Microsoft.Framework.DependencyInjection;
 
 
