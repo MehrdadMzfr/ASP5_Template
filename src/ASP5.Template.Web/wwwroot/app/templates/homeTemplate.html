@@ -1,13 +1,27 @@
-﻿<form class="form-inline">
-    <div>
-        <label class="">User Name</label>
-        <input class="form-control" type="text" ng-model="userName"/>
+﻿<div class="container">
+    <div class="form-inline">
+        <form>
+            <div class="row">
+                <label class="">User Name</label>
+                <input class="form-control" type="text" ng-model="userName" />
 
+            </div>
+            <div class="row">
+                <label>Password</label>
+                <input class="form-control" type="text" ng-model="password" />
+            </div>
+            <div class="row">
+                <button class="form-control" ng-click="vm.login(userName, password)">Login</button>
+                <button class="form-control" ng-click="vm.getProtectedData()">Get Data</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <label>Password</label>
-        <input class="form-control" type="text" ng-model="password"/>
+    <div class="row">
+        <label>Message</label>
+        {{message}}
     </div>
-    <button class="form-control" ng-click="vm.login(userName, password)">Login</button>
-    <button class="form-control" ng-click="vm.getProtectedData()">Get Data</button>
-</form>
+    <div class="row">
+        <label>Data</label>
+        {{data}}
+    </div>
+</div>

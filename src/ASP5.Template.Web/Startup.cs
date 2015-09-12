@@ -51,7 +51,6 @@ namespace ASP5.Template.Web
                 api.UseOAuthBearerAuthentication(options =>
                 {
                     options.AutomaticAuthentication = true;
-                    //options.SecurityTokenValidators = new List<ISecurityTokenValidator> { new };
                     options.Authority = "http://localhost:59849/";
                     options.Audience = "http://localhost:59849/";
                     //TODO: avoid errors in the futre? github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server/issues/94#issuecomment-118359248
@@ -85,7 +84,7 @@ namespace ASP5.Template.Web
                 options.Issuer = new Uri("http://localhost:59849");
                 options.TokenEndpointPath = new PathString("/token");
                 //options.AuthorizationEndpointPath = new PathString("/token");
-                options.AccessTokenLifetime = new TimeSpan(0, 15, 0);
+                options.AccessTokenLifetime = new TimeSpan(0, 1, 0);
                 options.ValidationEndpointPath = PathString.Empty;
                 options.Provider = new DefaultAuthorizationProvider();
             });
