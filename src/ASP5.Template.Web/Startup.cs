@@ -44,7 +44,7 @@ namespace ASP5.Template.Web
         public void Configure(IApplicationBuilder app, IRuntimeEnvironment env)
         {
 #if !DEBUG
-            app.UseForceSSL();
+            //app.UseForceSSL();
 #endif
             app.Map("/api", api =>
             {
@@ -54,6 +54,8 @@ namespace ASP5.Template.Web
                     //options.SecurityTokenValidators = new List<ISecurityTokenValidator> { new };
                     options.Authority = "http://localhost:59849/";
                     options.Audience = "http://localhost:59849/";
+                    //TODO: avoid errors in the futre? github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server/issues/94#issuecomment-118359248
+                    options.TokenValidationParameters.ValidateAudience = false;
                 });
                 api.UseMvc(builder =>
                 {

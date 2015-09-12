@@ -73,7 +73,7 @@ namespace ASP5.Template.Core.Providers
         private bool UserAuthenticatedSimple(GrantResourceOwnerCredentialsNotification notification, out string roleType)
         {
             roleType = null;
-            if (notification.UserName == "sharpiro" && notification.Password == "goldfish")
+            if (notification.UserName == "sharpiro" && notification.Password == "password")
             {
                 roleType = "admin";
                 return true;

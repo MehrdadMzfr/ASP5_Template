@@ -6,6 +6,7 @@
         "sourceMap": true,
         "target": "es5",
         "outDir": "../wwwroot",
-        "out": "../wwwroot/app/appCombined.js"
+        "out": "../wwwroot/app/appCombined.js",
+        "version": "1.5"
     }
 }

@@ -1,1 +1,13 @@
-﻿{{message}}
+﻿<form class="form-inline">
+    <div>
+        <label class="">User Name</label>
+        <input class="form-control" type="text" ng-model="userName"/>
+
+    </div>
+    <div>
+        <label>Password</label>
+        <input class="form-control" type="text" ng-model="password"/>
+    </div>
+    <button class="form-control" ng-click="vm.login(userName, password)">Login</button>
+    <button class="form-control" ng-click="vm.getProtectedData()">Get Data</button>
+</form>
