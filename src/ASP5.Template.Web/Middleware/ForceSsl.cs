@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
@@ -12,6 +13,7 @@ namespace ASP5.Template.Web.Middleware
     public class ForceSsl
     {
         private readonly RequestDelegate _next;
+        private readonly PathString whiteListPath = new PathString("/.well-known");
 
         public ForceSsl(RequestDelegate next)
         {
@@ -20,7 +22,7 @@ namespace ASP5.Template.Web.Middleware
 
         public Task Invoke(HttpContext context)
         {
-            if (context.Request.IsHttps)
+            if (context.Request.IsHttps || context.Request.Path.StartsWithSegments(whiteListPath))
                 return _next.Invoke(context);
             var url = context.Request.GetEncodedUrl();
             var redirectUrl = url.Replace("http", "https");

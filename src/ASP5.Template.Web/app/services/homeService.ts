@@ -17,7 +17,7 @@
     }
 
     public getProtectedData(accessToken: string): ng.IPromise<any> {
-        return this.$http.get("/api/values/GetSecuredData", { headers: { "Authorization" : ` Bearer ${accessToken}` } });
+        return this.$http.get("/api/admin/getdata", { headers: { "Authorization" : ` Bearer ${accessToken}` } });
     }
 }
 

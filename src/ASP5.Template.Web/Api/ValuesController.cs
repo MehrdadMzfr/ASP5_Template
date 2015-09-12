@@ -1,5 +1,4 @@
 ﻿using ASP5.Template.Core;
-using ASP5.Template.Core.Models;
 using ASP5.Template.Web.Models;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;

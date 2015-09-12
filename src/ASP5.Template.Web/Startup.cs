@@ -14,6 +14,7 @@ using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using System.Reflection;
 using ASP5.Template.Core.Providers;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace ASP5.Template.Web
 {
@@ -44,15 +45,15 @@ namespace ASP5.Template.Web
         public void Configure(IApplicationBuilder app, IRuntimeEnvironment env)
         {
 #if !DEBUG
-            //app.UseForceSSL();
+            app.UseForceSSL();
 #endif
             app.Map("/api", api =>
             {
                 api.UseOAuthBearerAuthentication(options =>
                 {
                     options.AutomaticAuthentication = true;
-                    options.Authority = "http://localhost:59849/";
-                    options.Audience = "http://localhost:59849/";
+                    options.Authority = Configuration["Data:TokenAuthority:http"];
+                    //options.Audience = Configuration["Data:TokenAuthority"];
                     //TODO: avoid errors in the futre? github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server/issues/94#issuecomment-118359248
                     options.TokenValidationParameters.ValidateAudience = false;
                 });
@@ -75,15 +76,14 @@ namespace ASP5.Template.Web
                 }
                 else
                 {
-                    var temp = typeof(Startup).GetTypeInfo().Assembly;
                     options.UseCertificate(typeof(Startup).GetTypeInfo().Assembly, "ASP5.Template.Web.Certificate.pfx", "Owin.Security.OpenIdConnect.Server");
                 }
 
                 options.ApplicationCanDisplayErrors = true;
                 options.AllowInsecureHttp = true;
-                options.Issuer = new Uri("http://localhost:59849");
+                options.Issuer = new Uri(Configuration["Data:TokenAuthority:http"]);
                 options.TokenEndpointPath = new PathString("/token");
-                //options.AuthorizationEndpointPath = new PathString("/token");
+                options.AuthorizationEndpointPath = PathString.Empty;
                 options.AccessTokenLifetime = new TimeSpan(0, 1, 0);
                 options.ValidationEndpointPath = PathString.Empty;
                 options.Provider = new DefaultAuthorizationProvider();
