@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens;
-using System.Security.Cryptography;
-using AspNet.Security.OpenIdConnect.Server;
 using ASP5.Template.Core;
 using ASP5.Template.Web.Models;
-using ASP5.Template.Web.Middleware;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
-using System.Reflection;
-using ASP5.Template.Core.Providers;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using ASP5.Template.Security;
+using ASP5.Template.Security.Middleware;
 
 namespace ASP5.Template.Web
 {
@@ -33,11 +26,11 @@ namespace ASP5.Template.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
+            Context.ConnectionString = connectionString;
             services.AddInstance<IDataLayer>(new DataLayer(connectionString));
             services.AddTransient<IBusinessService, BusinessService>();
             services.AddTransient<EfBusinessLayer>();
-            Context.ConnectionString = connectionString;
-            services.AddAuthentication();
+            //services.AddAuthentication();
             services.AddCaching();
             services.AddMvc();
         }
@@ -47,48 +40,18 @@ namespace ASP5.Template.Web
 #if !DEBUG
             app.UseForceSSL();
 #endif
-            app.Map("/api", api =>
+            var securityOptions = new SecurityOptions
             {
-                api.UseOAuthBearerAuthentication(options =>
-                {
-                    options.AutomaticAuthentication = true;
-                    options.Authority = Configuration["Data:TokenAuthority:http"];
-                    //options.Audience = Configuration["Data:TokenAuthority"];
-                    //TODO: avoid errors in the futre? github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server/issues/94#issuecomment-118359248
-                    options.TokenValidationParameters.ValidateAudience = false;
-                });
-                api.UseMvc(builder =>
-                {
-                    builder.MapRoute(name: "defaultApi", template: "{controller}/{action}");
-                });
-            });
-
-            app.UseOpenIdConnectServer(options =>
+                Authority = Configuration["Data:TokenAuthority:http"],
+                IsMonoEnvironment = string.Equals(env.RuntimeType, "Mono", StringComparison.OrdinalIgnoreCase),
+                TokenLifeTime = TimeSpan.FromMinutes(10)
+            };
+            app.UseSecurity(securityOptions);
+            app.UseProtectedDirectory();
+            app.UseMvc(builder =>
             {
-                options.AuthenticationScheme = OpenIdConnectDefaults.AuthenticationScheme;
-
-                if (string.Equals(env.RuntimeType, "Mono", StringComparison.OrdinalIgnoreCase))
-                {
-                    var rsaCryptoServiceProvider = new RSACryptoServiceProvider(2048);
-                    var rsaParameters = rsaCryptoServiceProvider.ExportParameters(true);
-
-                    options.UseKey(new RsaSecurityKey(rsaParameters));
-                }
-                else
-                {
-                    options.UseCertificate(typeof(Startup).GetTypeInfo().Assembly, "ASP5.Template.Web.Certificate.pfx", "Owin.Security.OpenIdConnect.Server");
-                }
-
-                options.ApplicationCanDisplayErrors = true;
-                options.AllowInsecureHttp = true;
-                options.Issuer = new Uri(Configuration["Data:TokenAuthority:http"]);
-                options.TokenEndpointPath = new PathString("/token");
-                options.AuthorizationEndpointPath = PathString.Empty;
-                options.AccessTokenLifetime = new TimeSpan(0, 1, 0);
-                options.ValidationEndpointPath = PathString.Empty;
-                options.Provider = new DefaultAuthorizationProvider();
+                builder.MapRoute(name: "defaultApi", template: "api/{controller}/{action}");
             });
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Builder.Internal;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Http.Extensions;
-using Microsoft.AspNet.Mvc;
 
-namespace ASP5.Template.Web.Middleware
+namespace ASP5.Template.Security.Middleware
 {
     public class ForceSsl
     {

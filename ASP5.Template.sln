@@ -16,6 +16,12 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ASP5.Template.Web", "src\AS
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ASP5.Template.Core", "src\ASP5.Template.Core\ASP5.Template.Core.xproj", "{1B78DDA8-F456-4550-8D13-DAE9CED54F26}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ASP5.Template.Security", "src\ASP5.Template.Security\ASP5.Template.Security.xproj", "{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{170EDD97-BC07-4AAD-B48D-5848068DF755}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ASP5.Template.Tests", "ASP5.Template.Tests\ASP5.Template.Tests.xproj", "{AA4B055B-2C11-4BD6-A38D-208C5B466D72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +36,14 @@ Global
 		{1B78DDA8-F456-4550-8D13-DAE9CED54F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B78DDA8-F456-4550-8D13-DAE9CED54F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B78DDA8-F456-4550-8D13-DAE9CED54F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA4B055B-2C11-4BD6-A38D-208C5B466D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA4B055B-2C11-4BD6-A38D-208C5B466D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA4B055B-2C11-4BD6-A38D-208C5B466D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA4B055B-2C11-4BD6-A38D-208C5B466D72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +51,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DB80D23E-72E4-44CE-A98F-A158ADB2ED79} = {E54AB348-8C48-45AB-AD61-2058F0953996}
 		{1B78DDA8-F456-4550-8D13-DAE9CED54F26} = {E54AB348-8C48-45AB-AD61-2058F0953996}
+		{8CAEF633-5AE9-4AA1-9FF6-898C8A6AD262} = {E54AB348-8C48-45AB-AD61-2058F0953996}
+		{AA4B055B-2C11-4BD6-A38D-208C5B466D72} = {170EDD97-BC07-4AAD-B48D-5848068DF755}
 	EndGlobalSection
 EndGlobal

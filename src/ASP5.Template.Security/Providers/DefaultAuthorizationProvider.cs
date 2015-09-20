@@ -1,16 +1,15 @@
-﻿using System;
+﻿#pragma warning disable 1998
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Server;
 using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Http.Authentication;
-using AspNet.Security.OpenIdConnect.Extensions;
 
-namespace ASP5.Template.Core.Providers
+namespace ASP5.Template.Security.Providers
 {
-    public class DefaultAuthorizationProvider: OpenIdConnectServerProvider
+    internal class DefaultAuthorizationProvider: OpenIdConnectServerProvider
     {
         public override async Task ValidateClientAuthentication(ValidateClientAuthenticationNotification notification)
         {
@@ -39,8 +38,12 @@ namespace ASP5.Template.Core.Providers
                 });
             var principal = new ClaimsPrincipal(identity);
             var ticket = new AuthenticationTicket(principal, props, OpenIdConnectDefaults.AuthenticationScheme);
-
             notification.Validated(ticket);
+        }
+
+        public async Task DoNothing()
+        {
+            
         }
 
         public override Task GrantRefreshToken(GrantRefreshTokenNotification notification)

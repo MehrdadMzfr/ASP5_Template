@@ -16,7 +16,7 @@ namespace ASP5.Template.Core
             {
                 var manufacturer = new Manufacturer { Id = 1, Name = "Ford" };
                 var data = context.Manufacturers.Add(manufacturer);
-                context.Manufacturers.AddOrUpdate(manufacturer);
+                //context.Manufacturers.AddOrUpdate(manufacturer);
                 var listLength = GetData().Count;
                 //context.SaveChanges();
             }

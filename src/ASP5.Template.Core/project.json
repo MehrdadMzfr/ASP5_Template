@@ -6,12 +6,13 @@
     "projectUrl": "",
     "licenseUrl": "",
     "frameworks": {
-        "dnxcore50": { }
+        "dnxcore50": { },
+        "dnx451": { }
     },
     "dependencies": {
         "EntityFramework.Commands": "7.0.0-beta7",
         "EntityFramework.SqlServer": "7.0.0-beta7",
-        "AspNet.Security.OpenIdConnect.Server": "1.0.0-beta2"
+        "ASP5.Template.Security": ""
     },
     "commands": {
         "ef": "EntityFramework.Commands"
